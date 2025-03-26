@@ -1,26 +1,22 @@
+import toni.blahaj.setup.modRuntimeOnly
+
 plugins {
 	id("toni.blahaj")
 }
 
 blahaj {
-	config {
-		// yarn()
-		// versionedAccessWideners()
-	}
+	config { }
 	setup {
 		txnilib("1.0.22")
 		forgeConfig()
 
-		/* access Gradle's DependencyHandler
-		deps.modImplementation("maven:modrinth:sodium:mc$mc-0.6.5-$loader")
+		if (mod.isForge) {
+			deps.modRuntimeOnly(modrinth("overflowing-bars", "v8.0.1-1.20.1-Forge"))
+			deps.modRuntimeOnly(modrinth("puzzles-lib", "v8.1.29-1.20.1-Forge"))
+			deps.modRuntimeOnly("fuzs.puzzlesaccessapi:puzzlesaccessapi-forge:20.1.1")
 
-		// configure Curseforge & Modrinth publish settings
-		incompatibleWith("optifine")
-
-		// add mods with Blahaj's fluent interface
-		addMod("sodiumextras")
-			.modrinth("sodium-extras") // override with Modrinth URL slug
-			.addPlatform("1.21.1-neoforge", "neoforge-1.21.1-1.0.7")
-			.addPlatform("1.21.1-fabric", "fabric-1.21.1-1.0.7") { required() } */
+			deps.compileOnly(deps.annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1")!!)
+			deps.implementation(deps.include("io.github.llamalad7:mixinextras-forge:0.4.1")!!)
+		}
 	}
 }

@@ -1,4 +1,4 @@
 {
-  "example_mod.configuration.client": "client",
-  "example_mod.configuration.example": "example"
+  "immersivearmorhud.configuration.client": "client",
+  "immersivearmorhud.configuration.example": "example"
 }
